@@ -4,6 +4,13 @@ const { validationResult } = require('express-validator/check');
 
 
 module.exports = {
+    index: function(req, res) {
+        res.json({
+            status: 200,
+            data: meetups
+        });
+    },
+
     create: function(req, res) {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {

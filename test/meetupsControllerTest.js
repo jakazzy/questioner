@@ -11,6 +11,19 @@ chai.use(chaiHTTP);
 
 
 describe("MeetupsController", function() {
+    // GET ALL MEETUPS
+    describe("GET api/v1/meetups/", function() {
+        it("should get all the meetups", function(done) {
+            chai.request(server)
+                .get("/api/v1/meetups")
+                .end(function(err, res) {
+                    res.should.have.status(200);
+                    res.body.data.should.be.a("array");
+                    res.body.data.length.should.be.eql(2);
+                })
+            done();
+        })
+    });
 
     // POST/CREATE A MEETUP
     describe("POST api/v1/meetups", function() {
@@ -68,5 +81,6 @@ describe("MeetupsController", function() {
             done()
         })
     });
+
 
 })
