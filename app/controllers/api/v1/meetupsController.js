@@ -23,4 +23,21 @@ module.exports = {
         })
 
     },
+
+    show: function(req, res) {
+        let meetup = meetups[req.params.meetupID - 1]
+        if (meetup == undefined) {
+            res.status(404).json({
+                status: 404,
+                error: `Meetup with id ${req.params.meetupID} not found`
+            })
+            return
+        }
+
+        res.status(200).json({
+            status: 200,
+            data: meetup
+        })
+    },
+
 }

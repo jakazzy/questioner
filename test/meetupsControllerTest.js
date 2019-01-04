@@ -12,7 +12,7 @@ chai.use(chaiHTTP);
 
 describe("MeetupsController", function() {
 
-    // POST
+    // POST/CREATE A MEETUP
     describe("POST api/v1/meetups", function() {
         let meetupsLength = meetups.length;
 
@@ -39,12 +39,34 @@ describe("MeetupsController", function() {
             done()
         });
 
-
-
         it("should increase the length of meetups by one", function(done) {
             let difference = (meetups.length - meetupsLength);
             expect(difference).to.equal(1);
             done()
         })
     });
+
+    // GET A SPECIFIC MEETUP
+    describe("GET /api/v1/meetups/:meetup_id", function() {
+        it("should return success if the  meetup exist", function(done) {
+            chai.request(server)
+                .get("/api/v1/meetups/2")
+                .end(function(err, res) {
+                    res.should.have.status(200);
+                })
+            done();
+        });
+
+        it("should return error if meetup does not exist", function(done) {
+            chai.request(server)
+                .get("/api/v1/meetups/90")
+                .end(function(err, res) {
+                    res.should.have.status(404);
+                    // res.body.error.should.have(`Meetup with id 90 not found`);
+                    res.body.error.should.be.eql(`Meetup with id 90 not found`);
+                })
+            done()
+        })
+    });
+
 })
