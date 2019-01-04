@@ -2,7 +2,7 @@ let chai = require("chai");
 let expect = chai.expect;
 let should = chai.should();
 let chaiHTTP = require("chai-http");
-let server = require("../index");
+let server = require("./../server");
 let faker = require("faker");
 let questions = require("./../app/dataStore/questionsTable");
 
