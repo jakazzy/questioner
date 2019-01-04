@@ -6,5 +6,6 @@ module.exports = function(express) {
 
     // meetups routes
     v1.post("/meetups", validator.createMeetup, v1Controllers.meetupsController.create);
+    v1.get("/meetups/:meetupID", v1Controllers.meetupsController.show);
     return v1
 }
