@@ -16,6 +16,8 @@ module.exports = function(express) {
     v1.get("/questions", v1Controllers.questionsController.index);
     v1.get("/questions/:questionID", v1Controllers.questionsController.show);
     v1.post("/questions", v1Controllers.questionsController.create);
+    v1.patch("/questions/:questionID/upvote", v1Controllers.questionsController.upvote);
+    v1.patch("/questions/:questionID/downvote", v1Controllers.questionsController.downvote);
 
     return v1
 }

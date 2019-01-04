@@ -29,5 +29,39 @@ module.exports = {
             status: 200,
             data: question
         })
+    },
+
+    upvote: function(req, res) {
+        let question = questions[req.params.questionID - 1];
+        if (question == undefined) {
+            res.status(404).json({
+                status: 404,
+                error: "Question does not exist"
+            })
+            return
+        }
+
+        question.upvotes += 1;
+        res.status(200).json({
+            status: 200,
+            data: question
+        })
+    },
+
+    downvote: function(req, res) {
+        let question = questions[req.params.questionID - 1];
+        if (question == undefined) {
+            res.status(404).json({
+                status: 404,
+                error: "Question does not exist"
+            })
+            return
+        }
+
+        question.downvotes += 1;
+        res.status(200).json({
+            status: 200,
+            data: question
+        })
     }
 }
