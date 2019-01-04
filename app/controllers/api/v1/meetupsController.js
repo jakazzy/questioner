@@ -12,6 +12,17 @@ module.exports = {
         });
     },
 
+    upcoming: function(req, res) {
+        let upcomingMeetups = meetups.filter(function(meetup) {
+            return meetup.done == false
+        });
+
+        res.json({
+            status: 200,
+            data: upcomingMeetups
+        })
+    },
+
     create: function(req, res) {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
@@ -66,4 +77,24 @@ module.exports = {
         })
     },
 
+
+    createRsvp: function(req, res) {
+        if (meetups[req.params.meetupID - 1] == undefined) {
+            res.status(404).json({
+                status: 404,
+                error: `Meetup with id ${req.params.meetupID} not found`
+            });
+            return
+        }
+
+        let rsvp = req.body;
+        rsvp.id = rsvps.length + 1;
+        rsvp.meetupID = req.params.meetupID;
+        rsvps.push(rsvp);
+        res.status(201).json({
+            status: 201,
+            data: rsvp
+        })
+
+    }
 }
