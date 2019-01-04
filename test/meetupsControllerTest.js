@@ -82,6 +82,18 @@ describe("MeetupsController", function() {
         })
     });
 
+    // GET UPCOMING MEETUPS
+    describe("GET /meetups/upcoming/", function() {
+        it("should get meetups that are done", function(done) {
+            chai.request(server)
+                .get("/api/v1/meetups/upcoming/")
+                .end(function(err, res) {
+                    res.should.have.status(200);
+                })
+            done();
+        })
+    });
+
     // GET RSVPS FOR A MEETUP
     describe("GET /meetups/meetupID/rsvps", function() {
         it("should get rsvps for a meetup", function(done) {
@@ -94,5 +106,15 @@ describe("MeetupsController", function() {
         })
     });
 
-
+    // POST RSVPS
+    describe("POST /meetups/meetupID/rsvps", function() {
+        it("should create rsvp", function(done) {
+            chai.request(server)
+                .post("/api/v1/meetups/1/rsvps")
+                .end(function(err, res) {
+                    res.should.have.status(201);
+                })
+            done();
+        })
+    })
 })
