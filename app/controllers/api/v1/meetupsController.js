@@ -1,5 +1,6 @@
 // imports
 let meetups = require("./../../../dataStore/meetupsTable");
+let rsvps = require("./../../../dataStore/rsvpsTable(meetups-tables)");
 const { validationResult } = require('express-validator/check');
 
 
@@ -44,6 +45,24 @@ module.exports = {
         res.status(200).json({
             status: 200,
             data: meetup
+        })
+    },
+
+    rsvps: function(req, res) {
+        if (meetups[req.params.meetupID - 1] == undefined) {
+            res.status(404).json({
+                status: 404,
+                error: `Meetup with id ${req.params.meetupID} not found`
+            });
+            return
+        }
+
+        attendees = rsvps.filter(function(rsvp) {
+            return rsvp.meetupID == req.params.meetupID
+        });
+        res.json({
+            status: 200,
+            data: attendees
         })
     },
 

@@ -8,5 +8,8 @@ module.exports = function(express) {
     v1.post("/meetups", validator.createMeetup, v1Controllers.meetupsController.create);
     v1.get("/meetups/:meetupID", v1Controllers.meetupsController.show);
     v1.get("/meetups", v1Controllers.meetupsController.index);
+    v1.get("/meetups/:meetupID/rsvps", v1Controllers.meetupsController.rsvps);
+
+
     return v1
 }

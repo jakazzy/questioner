@@ -82,5 +82,17 @@ describe("MeetupsController", function() {
         })
     });
 
+    // GET RSVPS FOR A MEETUP
+    describe("GET /meetups/meetupID/rsvps", function() {
+        it("should get rsvps for a meetup", function(done) {
+            chai.request(server)
+                .get("/api/v1/meetups/1/rsvps")
+                .end(function(err, res) {
+                    res.should.have.status(200);
+                })
+            done()
+        })
+    });
+
 
 })
