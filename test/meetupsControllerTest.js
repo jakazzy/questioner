@@ -7,6 +7,7 @@ let server = require("./../server");
 let faker = require("faker");
 let meetups = require("./../app/dataStore/meetupsTable");
 
+
 chai.use(chaiHTTP);
 
 
@@ -25,7 +26,7 @@ describe("MeetupsController", function() {
         })
     });
 
-    // POST/CREATE A MEETUP
+    // POST A MEETUP
     describe("POST api/v1/meetups", function() {
         let meetupsLength = meetups.length;
 
@@ -36,7 +37,7 @@ describe("MeetupsController", function() {
                 city: faker.address.city(),
                 image: faker.image.image(),
                 topic: faker.lorem.sentence(),
-                description: faker.lorem.words(),
+                description: faker.lorem.sentences(3),
                 startTime: faker.date.recent(),
                 endTime: faker.date.future(),
                 done: true,
@@ -47,6 +48,7 @@ describe("MeetupsController", function() {
                 .post("/api/v1/meetups")
                 .send(validMeetup)
                 .end(function(err, res) {
+                    console.log(res.body);
                     res.should.have.status(201);
                 });
             done()
@@ -109,8 +111,15 @@ describe("MeetupsController", function() {
     // POST RSVPS
     describe("POST /meetups/meetupID/rsvps", function() {
         it("should create rsvp", function(done) {
+            let validRSVP = {
+                id: 2,
+                userID: 2,
+                meetupID: 2,
+                invitees: faker.random.number()
+            };
             chai.request(server)
                 .post("/api/v1/meetups/1/rsvps")
+                .send(validRSVP)
                 .end(function(err, res) {
                     res.should.have.status(201);
                 })
