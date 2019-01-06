@@ -5,64 +5,50 @@ module.exports = {
     // Meetup
     validateMeetup: [
         check('userID')
-        .not()
-        .isEmpty()
+        .not().isEmpty()
         .withMessage('userID is required'),
 
         check('location')
-        .not()
-        .isEmpty()
+        .not().isEmpty()
         .withMessage('meetup location is required'),
 
         check('topic')
-        .not()
-        .isEmpty()
+        .not().isEmpty()
         .withMessage('topic is required'),
 
         check('startTime')
-        .not()
-        .isEmpty()
+        .not().isEmpty()
         .withMessage('start time is required'),
 
         check('endTime')
-        .not()
-        .isEmpty()
-        .withMessage('end time is required')
-        .isAfter('startTime'),
+        .not().isEmpty()
+        .withMessage('end time is required'),
 
         check('description')
-        .not()
-        .isEmpty()
+        .not().isEmpty()
         .withMessage('Give a brief description of meetup')
-        .isLength({ min: 50 }),
-
-        check('date')
-        .isBoolean('date')
+        .isLength({ min: 50 })
     ],
 
     // RSVP
     validateRsvp: [
         check('userID')
-        .not().
-        isEmpty()
+        .not().isEmpty()
         .withMessage('userID is required')
     ],
 
     // Question
     validateQuestion: [
         check('userID')
-        .not()
-        .isEmpty()
+        .not().isEmpty()
         .withMessage('userID is required'),
 
         check('title')
-        .not()
-        .isEmpty()
+        .not().isEmpty()
         .withMessage('title is required'),
 
         check('body')
-        .not()
-        .isEmpty()
+        .not().isEmpty()
         .withMessage('body is required')
     ]
 
