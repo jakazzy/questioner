@@ -1,4 +1,5 @@
 let questions = require("./../../../dataStore/questionsTable");
+const { validationResult } = require('express-validator/check');
 
 module.exports = {
     index: function(req, res) {
@@ -6,6 +7,15 @@ module.exports = {
     },
 
     create: function(req, res) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            res.status(400).json({
+                status: 400,
+                errors: errors.array()
+            });
+            return
+        }
+
         let question = req.body;
         question.id = questions.length + 1;
         questions.push(question);

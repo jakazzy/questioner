@@ -3,16 +3,67 @@ const { check } = require("express-validator/check");
 module.exports = {
 
     // Meetup
-    createMeetup: [
-        check('userID').not().isEmpty().withMessage('userID is required')
+    validateMeetup: [
+        check('userID')
+        .not()
+        .isEmpty()
+        .withMessage('userID is required'),
+
+        check('location')
+        .not()
+        .isEmpty()
+        .withMessage('meetup location is required'),
+
+        check('topic')
+        .not()
+        .isEmpty()
+        .withMessage('topic is required'),
+
+        check('startTime')
+        .not()
+        .isEmpty()
+        .withMessage('start time is required'),
+
+        check('endTime')
+        .not()
+        .isEmpty()
+        .withMessage('end time is required')
+        .isAfter('startTime'),
+
+        check('description')
+        .not()
+        .isEmpty()
+        .withMessage('Give a brief description of meetup')
+        .isLength({ min: 50 }),
+
+        check('date')
+        .isBoolean('date')
     ],
 
-    createRsvp: [
-        // check('userID').
+    // RSVP
+    validateRsvp: [
+        check('userID')
+        .not().
+        isEmpty()
+        .withMessage('userID is required')
     ],
-
 
     // Question
-    createQuestion: []
+    validateQuestion: [
+        check('userID')
+        .not()
+        .isEmpty()
+        .withMessage('userID is required'),
+
+        check('title')
+        .not()
+        .isEmpty()
+        .withMessage('title is required'),
+
+        check('body')
+        .not()
+        .isEmpty()
+        .withMessage('body is required')
+    ]
 
 }

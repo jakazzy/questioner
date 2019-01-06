@@ -79,10 +79,11 @@ module.exports = {
 
 
     createRsvp: function(req, res) {
-        if (meetups[req.params.meetupID - 1] == undefined) {
-            res.status(404).json({
-                status: 404,
-                error: `Meetup with id ${req.params.meetupID} not found`
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            res.status(400).json({
+                status: 400,
+                errors: errors.array()
             });
             return
         }
