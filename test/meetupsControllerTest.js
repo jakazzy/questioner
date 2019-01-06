@@ -48,7 +48,6 @@ describe("MeetupsController", function() {
                 .post("/api/v1/meetups")
                 .send(validMeetup)
                 .end(function(err, res) {
-                    console.log(res.body);
                     res.should.have.status(201);
                 });
             done()
