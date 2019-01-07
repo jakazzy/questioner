@@ -5,7 +5,9 @@
     "main": "server.js",
     "scripts": {
         "server": "nodemon server.js",
-        "test": "mocha --exit"
+        "test": "mocha --exit",
+        "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha  test/*.js ",
+        "coveralls": "npm run coverage"
     },
     "repository": {
         "type": "git",
@@ -21,7 +23,8 @@
         "body-parser": "^1.18.3",
         "express": "^4.16.4",
         "express-validator": "^5.3.1",
-        "faker": "^4.1.0"
+        "faker": "^4.1.0",
+        "istanbul": "^0.4.5"
     },
     "devDependencies": {
         "chai": "^4.2.0",
