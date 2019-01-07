@@ -37,9 +37,11 @@ app.use(bodyParser.json());
 app.use("/api/v1", v1(express));
 
 // server starts
-app.listen(port, function() {
-    console.log("Api Server running at port 8080")
-})
+if (!module.parent) {
+    app.listen(port, function() {
+        console.log("Api Server running at port 8080")
+    })
+}
 
 // export for test (chai-http)
 module.exports = app;
