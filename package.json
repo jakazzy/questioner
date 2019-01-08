@@ -5,9 +5,8 @@
     "main": "server.js",
     "scripts": {
         "server": "nodemon server.js",
-        "test": "mocha --exit",
-        "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha  test/*.js ",
-        "coveralls": "npm run coverage"
+        "test": "istanbul cover _mocha",
+        "coveralls": "npm run test -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
     },
     "repository": {
         "type": "git",
@@ -30,6 +29,7 @@
         "chai": "^4.2.0",
         "chai-http": "^4.2.1",
         "coveralls": "^3.0.2",
+        "istanbul": "^0.4.5",
         "mocha": "^5.2.0",
         "mocha-lcov-reporter": "^1.3.0",
         "nodemon": "^1.18.9"
