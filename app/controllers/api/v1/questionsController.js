@@ -1,77 +1,78 @@
-let questions = require("./../../../dataStore/questionsTable");
 const { validationResult } = require('express-validator/check');
+const questions = require('./../../../dataStore/questionsTable');
+
 
 module.exports = {
-    index: function(req, res) {
-        res.json(questions)
+    index(req, res) {
+        res.json(questions);
     },
 
-    create: function(req, res) {
-        const errors = validationResult(req)
+    create(req, res) {
+        const errors = validationResult(req);
         if (!errors.isEmpty()) {
             res.status(400).json({
                 status: 400,
-                errors: errors.array()
+                errors: errors.array(),
             });
-            return
+            return;
         }
 
-        let question = req.body;
+        const question = req.body;
         question.id = questions.length + 1;
         questions.push(question);
         res.status(201).json({
             status: 201,
-            data: question
-        })
+            data: question,
+        });
     },
 
-    show: function(req, res) {
-        let question = questions[req.params.questionID - 1];
+    show(req, res) {
+        const question = questions[req.params.questionID - 1];
         if (question == undefined) {
             res.status(404).json({
                 status: 404,
-                error: "Question does not exist"
-            })
-            return
+                error: 'Question does not exist',
+            });
+            return;
         }
 
         res.status(200).json({
             status: 200,
-            data: question
-        })
+            data: question,
+        });
     },
 
-    upvote: function(req, res) {
-        let question = questions[req.params.questionID - 1];
+    upvote(req, res) {
+        const question = questions[req.params.questionID - 1];
         if (question == undefined) {
             res.status(404).json({
                 status: 404,
-                error: "Question does not exist"
-            })
-            return
+                error: 'Question does not exist',
+            });
+            return;
         }
 
         question.upvotes += 1;
         res.status(200).json({
             status: 200,
-            data: question
-        })
+            data: question,
+        });
     },
 
-    downvote: function(req, res) {
-        let question = questions[req.params.questionID - 1];
+    downvote(req, res) {
+        const question = questions[req.params.questionID - 1];
         if (question == undefined) {
             res.status(404).json({
                 status: 404,
-                error: "Question does not exist"
-            })
-            return
+                error: 'Question does not exist',
+            });
+            return;
         }
 
         question.downvotes += 1;
         res.status(200).json({
             status: 200,
-            data: question
-        })
-    }
-}
+            data: question,
+        });
+    },
+};

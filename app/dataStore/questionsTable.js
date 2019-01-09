@@ -1,4 +1,5 @@
-const faker = require("faker");
+const faker = require('faker');
+
 module.exports = [{
     id: 1,
     createdOn: faker.date.recent(),
@@ -7,7 +8,7 @@ module.exports = [{
     title: faker.lorem.sentence(),
     body: faker.lorem.words(),
     upvotes: faker.random.number(),
-    downvotes: faker.random.number()
+    downvotes: faker.random.number(),
 }, {
     id: 2,
     createdOn: faker.date.recent(),
@@ -16,5 +17,5 @@ module.exports = [{
     title: faker.lorem.sentence(),
     body: faker.lorem.words(),
     upvotes: faker.random.number(),
-    downvotes: faker.random.number()
-}]
+    downvotes: faker.random.number(),
+}];
