@@ -1,4 +1,5 @@
-const faker = require("faker");
+const faker = require('faker');
+
 module.exports = [{
     id: 1,
     createdOn: faker.date.recent(),
@@ -10,7 +11,7 @@ module.exports = [{
     startTime: faker.date.recent(),
     endTime: faker.date.future(),
     done: true,
-    userID: 1
+    userID: 1,
 }, {
     id: 2,
     createdOn: faker.date.recent(),
@@ -22,5 +23,5 @@ module.exports = [{
     startTime: faker.date.recent(),
     endTime: faker.date.future(),
     done: false,
-    userID: 2
+    userID: 2,
 }];

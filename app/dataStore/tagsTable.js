@@ -1,9 +1,9 @@
-const faker = require("faker");
+const faker = require('faker');
 
-let tags = [{
+const tags = [{
     id: 1,
     name: faker.lorem.word(),
 }, {
     id: 2,
     name: faker.lorem.word(),
-}]
+}];

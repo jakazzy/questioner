@@ -1,36 +1,34 @@
 // imports
-let meetups = require("./../../../dataStore/meetupsTable");
-let rsvps = require("./../../../dataStore/rsvpsTable(meetups-tables)");
 const { validationResult } = require('express-validator/check');
+const meetups = require('./../../../dataStore/meetupsTable');
+const rsvps = require('./../../../dataStore/rsvpsTable(meetups-tables)');
 
 
 module.exports = {
-    index: function(req, res) {
+    index(req, res) {
         res.json({
             status: 200,
-            data: meetups
+            data: meetups,
         });
     },
 
-    upcoming: function(req, res) {
-        let upcomingMeetups = meetups.filter(function(meetup) {
-            return meetup.done == false
-        });
+    upcoming(req, res) {
+        const upcomingMeetups = meetups.filter(meetup => meetup.done == false);
 
         res.json({
             status: 200,
-            data: upcomingMeetups
-        })
+            data: upcomingMeetups,
+        });
     },
 
-    create: function(req, res) {
-        const errors = validationResult(req)
+    create(req, res) {
+        const errors = validationResult(req);
         if (!errors.isEmpty()) {
             res.status(400).json({
                 status: 400,
-                errors: errors.array()
+                errors: errors.array(),
             });
-            return
+            return;
         }
 
         meetup = req.body;
@@ -38,64 +36,60 @@ module.exports = {
         meetups.push(meetup);
         res.status(201).json({
             status: 201,
-            data: meetup
-        })
-
+            data: meetup,
+        });
     },
 
-    show: function(req, res) {
-        let meetup = meetups[req.params.meetupID - 1]
+    show(req, res) {
+        const meetup = meetups[req.params.meetupID - 1];
         if (meetup == undefined) {
             res.status(404).json({
                 status: 404,
-                error: `Meetup with id ${req.params.meetupID} not found`
-            })
-            return
+                error: `Meetup with id ${req.params.meetupID} not found`,
+            });
+            return;
         }
 
         res.status(200).json({
             status: 200,
-            data: meetup
-        })
+            data: meetup,
+        });
     },
 
-    rsvps: function(req, res) {
+    rsvps(req, res) {
         if (meetups[req.params.meetupID - 1] == undefined) {
             res.status(404).json({
                 status: 404,
-                error: `Meetup with id ${req.params.meetupID} not found`
+                error: `Meetup with id ${req.params.meetupID} not found`,
             });
-            return
+            return;
         }
 
-        attendees = rsvps.filter(function(rsvp) {
-            return rsvp.meetupID == req.params.meetupID
-        });
+        attendees = rsvps.filter(rsvp => rsvp.meetupID == req.params.meetupID);
         res.json({
             status: 200,
-            data: attendees
-        })
+            data: attendees,
+        });
     },
 
 
-    createRsvp: function(req, res) {
-        const errors = validationResult(req)
+    createRsvp(req, res) {
+        const errors = validationResult(req);
         if (!errors.isEmpty()) {
             res.status(400).json({
                 status: 400,
-                errors: errors.array()
+                errors: errors.array(),
             });
-            return
+            return;
         }
 
-        let rsvp = req.body;
+        const rsvp = req.body;
         rsvp.id = rsvps.length + 1;
         rsvp.meetupID = req.params.meetupID;
         rsvps.push(rsvp);
         res.status(201).json({
             status: 201,
-            data: rsvp
-        })
-
-    }
-}
+            data: rsvp,
+        });
+    },
+};
