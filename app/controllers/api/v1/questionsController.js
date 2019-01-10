@@ -1,14 +1,18 @@
 const { validationResult } = require('express-validator/check');
 const questions = require('./../../../dataStore/questionsTable');
+const errorMessage = ({ msg }) => msg;
 
 
 module.exports = {
     index(req, res) {
-        res.json(questions);
+        res.json({
+            status: 200,
+            data: questions,
+        });
     },
 
     create(req, res) {
-        const errors = validationResult(req);
+        const errors = validationResult(req).formatWith(errorMessage);
         if (!errors.isEmpty()) {
             res.status(400).json({
                 status: 400,
