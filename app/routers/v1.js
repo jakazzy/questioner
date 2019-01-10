@@ -1,7 +1,7 @@
-const v1Controllers = require('../controllers/api/v1');
-const validator = require('../helpers/validator');
+import v1Controllers from '../controllers/api/v1';
+import validator from '../helpers/validator';
 
-module.exports = function(express) {
+export default (express) => {
     const v1 = express.Router();
 
     // meetups routes

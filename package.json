@@ -4,9 +4,12 @@
     "description": "",
     "main": "server.js",
     "scripts": {
+        "start": "nodemon bin/dev",
         "server": "nodemon server.js",
-        "test": "istanbul cover _mocha || exit 0",
-        "coveralls": "npm run test -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+        "test": "babel-node node_modules/mocha/bin/_mocha test/*.js",
+        "coveralls": "npm run test -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+        "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/*.js -- --require babel-register",
+        "coverage": "babel-node ./node_modules/babel-istanbul/lib/cli cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec --timeout 10000 test/*.js"
     },
     "repository": {
         "type": "git",
@@ -26,6 +29,10 @@
         "istanbul": "^0.4.5"
     },
     "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-istanbul": "^0.12.2",
+        "babel-preset-env": "^1.7.0",
+        "babel-register": "^6.26.0",
         "chai": "^4.2.0",
         "chai-http": "^4.2.1",
         "coveralls": "^3.0.2",

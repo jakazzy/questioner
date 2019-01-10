@@ -1,9 +1,10 @@
-const { validationResult } = require('express-validator/check');
-const questions = require('./../../../dataStore/questionsTable');
+import { validationResult } from 'express-validator/check';
+import questions from '../../../dataStore/questionsTable';
+
 const errorMessage = ({ msg }) => msg;
 
 
-module.exports = {
+export default {
     index(req, res) {
         res.json({
             status: 200,

@@ -1,10 +1,10 @@
 // imports
-const { validationResult } = require('express-validator/check');
-const meetups = require('./../../../dataStore/meetupsTable');
-const rsvps = require('./../../../dataStore/rsvpsTable(meetups-tables)');
+import { validationResult } from 'express-validator/check';
+import meetups from '../../../dataStore/meetupsTable';
+import rsvps from '../../../dataStore/rsvpsTable(meetups-tables)';
 
 
-module.exports = {
+export default {
     index(req, res) {
         res.json({
             status: 200,
@@ -31,7 +31,7 @@ module.exports = {
             return;
         }
 
-        meetup = req.body;
+        let meetup = req.body;
         meetup.id = meetups.length + 1;
         meetups.push(meetup);
         res.status(201).json({
@@ -65,7 +65,7 @@ module.exports = {
             return;
         }
 
-        attendees = rsvps.filter(rsvp => rsvp.meetupID == req.params.meetupID);
+        let attendees = rsvps.filter(rsvp => rsvp.meetupID == req.params.meetupID);
         res.json({
             status: 200,
             data: attendees,
@@ -83,7 +83,7 @@ module.exports = {
             return;
         }
 
-        const rsvp = req.body;
+        let rsvp = req.body;
         rsvp.id = rsvps.length + 1;
         rsvp.meetupID = req.params.meetupID;
         rsvps.push(rsvp);

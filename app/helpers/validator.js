@@ -1,6 +1,6 @@
-const { check } = require('express-validator/check');
+import { check } from 'express-validator/check';
 
-module.exports = {
+export default {
 
     // Meetup
     validateMeetup: [

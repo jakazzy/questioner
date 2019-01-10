@@ -1,6 +1,6 @@
-const faker = require('faker');
+import faker from "faker";
 
-module.exports = [{
+export default [{
     id: 1,
     createdOn: faker.date.recent(),
     location: faker.address.streetAddress(),
