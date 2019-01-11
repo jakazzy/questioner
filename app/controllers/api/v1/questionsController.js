@@ -5,14 +5,14 @@ const errorMessage = ({ msg }) => msg;
 
 
 export default {
-    index(req, res) {
+    index: (req, res) => {
         res.json({
             status: 200,
             data: questions,
         });
     },
 
-    create(req, res) {
+    create: (req, res) => {
         const errors = validationResult(req).formatWith(errorMessage);
         if (!errors.isEmpty()) {
             res.status(400).json({
@@ -31,7 +31,7 @@ export default {
         });
     },
 
-    show(req, res) {
+    show: (req, res) => {
         const question = questions[req.params.questionID - 1];
         if (question == undefined) {
             res.status(404).json({
@@ -47,7 +47,7 @@ export default {
         });
     },
 
-    upvote(req, res) {
+    upvote: (req, res) => {
         const question = questions[req.params.questionID - 1];
         if (question == undefined) {
             res.status(404).json({
@@ -64,7 +64,7 @@ export default {
         });
     },
 
-    downvote(req, res) {
+    downvote: (req, res) => {
         const question = questions[req.params.questionID - 1];
         if (question == undefined) {
             res.status(404).json({

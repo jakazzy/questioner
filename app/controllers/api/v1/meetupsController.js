@@ -5,14 +5,14 @@ import rsvps from '../../../dataStore/rsvpsTable(meetups-tables)';
 
 
 export default {
-    index(req, res) {
+    index: (req, res) => {
         res.json({
             status: 200,
             data: meetups,
         });
     },
 
-    upcoming(req, res) {
+    upcoming: (req, res) => {
         const upcomingMeetups = meetups.filter(meetup => meetup.done == false);
 
         res.json({
@@ -21,7 +21,7 @@ export default {
         });
     },
 
-    create(req, res) {
+    create: (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             res.status(400).json({
@@ -40,7 +40,7 @@ export default {
         });
     },
 
-    show(req, res) {
+    show: (req, res) => {
         const meetup = meetups[req.params.meetupID - 1];
         if (meetup == undefined) {
             res.status(404).json({
@@ -56,7 +56,7 @@ export default {
         });
     },
 
-    rsvps(req, res) {
+    rsvps: (req, res) => {
         if (meetups[req.params.meetupID - 1] == undefined) {
             res.status(404).json({
                 status: 404,
@@ -73,7 +73,7 @@ export default {
     },
 
 
-    createRsvp(req, res) {
+    createRsvp: (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             res.status(400).json({
