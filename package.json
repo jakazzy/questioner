@@ -4,14 +4,13 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "start": "nodemon bin/dev",
+        "start": "npm run build && node dist/server",
         "server": "nodemon --exec babel-node server.js",
         "test": "babel-node node_modules/mocha/bin/_mocha test/*.js",
         "coveralls": "npm run test -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
         "coverage": "babel-node ./node_modules/babel-istanbul/lib/cli cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec --timeout 10000 test/*.js",
         "clean": "rm -rf dist",
-        "build": "babel . --ignore node_modules,test,dist,coverage -s -d dist",
-        "prod": "npm run clean && npm run build && node bin/prod"
+        "build": "babel . --ignore node_modules,test,dist,coverage -s -d dist"
     },
     "repository": {
         "type": "git",
