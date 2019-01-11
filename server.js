@@ -37,11 +37,11 @@ app.use('/api/v1', v1(express));
 
 // server starts
 
-// if (!module.parent) {
-app.listen(port, () => {
-    console.log('Api Server running at port 8080');
-});
-// }
+if (!module.parent) {
+    app.listen(port, () => {
+        console.log('Api Server running at port 8080');
+    });
+}
 
 // export for test (chai-http)
 export default app;
