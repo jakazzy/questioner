@@ -17,7 +17,7 @@ Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https
 
 ```sh
 git clone https://github.com/jakazzy/questioner.git # or clone your own fork
-cd node-js-sample
+cd questioner
 npm install
 npm run server
 ```
