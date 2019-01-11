@@ -42,7 +42,7 @@ export default {
 
     show: (req, res) => {
         const meetup = meetups[req.params.meetupID - 1];
-        if (meetup == undefined) {
+        if (meetup === undefined) {
             res.status(404).json({
                 status: 404,
                 error: `Meetup with id ${req.params.meetupID} not found`,
@@ -57,7 +57,7 @@ export default {
     },
 
     rsvps: (req, res) => {
-        if (meetups[req.params.meetupID - 1] == undefined) {
+        if (meetups[req.params.meetupID - 1] === undefined) {
             res.status(404).json({
                 status: 404,
                 error: `Meetup with id ${req.params.meetupID} not found`,

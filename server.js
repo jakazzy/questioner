@@ -1,4 +1,3 @@
-// imports
 import express from 'express';
 import bodyParser from 'body-parser';
 import v1 from './app/routers/v1';

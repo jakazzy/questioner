@@ -33,7 +33,7 @@ export default {
 
     show: (req, res) => {
         const question = questions[req.params.questionID - 1];
-        if (question == undefined) {
+        if (question === undefined) {
             res.status(404).json({
                 status: 404,
                 error: 'Question does not exist',
@@ -49,7 +49,7 @@ export default {
 
     upvote: (req, res) => {
         const question = questions[req.params.questionID - 1];
-        if (question == undefined) {
+        if (question === undefined) {
             res.status(404).json({
                 status: 404,
                 error: 'Question does not exist',
@@ -66,7 +66,7 @@ export default {
 
     downvote: (req, res) => {
         const question = questions[req.params.questionID - 1];
-        if (question == undefined) {
+        if (question === undefined) {
             res.status(404).json({
                 status: 404,
                 error: 'Question does not exist',
