@@ -1,17 +1,18 @@
-const { validationResult } = require('express-validator/check');
-const questions = require('./../../../dataStore/questionsTable');
+import { validationResult } from 'express-validator/check';
+import questions from '../../../dataStore/questionsTable';
+
 const errorMessage = ({ msg }) => msg;
 
 
-module.exports = {
-    index(req, res) {
+export default {
+    index: (req, res) => {
         res.json({
             status: 200,
             data: questions,
         });
     },
 
-    create(req, res) {
+    create: (req, res) => {
         const errors = validationResult(req).formatWith(errorMessage);
         if (!errors.isEmpty()) {
             res.status(400).json({
@@ -30,9 +31,9 @@ module.exports = {
         });
     },
 
-    show(req, res) {
+    show: (req, res) => {
         const question = questions[req.params.questionID - 1];
-        if (question == undefined) {
+        if (question === undefined) {
             res.status(404).json({
                 status: 404,
                 error: 'Question does not exist',
@@ -46,9 +47,9 @@ module.exports = {
         });
     },
 
-    upvote(req, res) {
+    upvote: (req, res) => {
         const question = questions[req.params.questionID - 1];
-        if (question == undefined) {
+        if (question === undefined) {
             res.status(404).json({
                 status: 404,
                 error: 'Question does not exist',
@@ -63,9 +64,9 @@ module.exports = {
         });
     },
 
-    downvote(req, res) {
+    downvote: (req, res) => {
         const question = questions[req.params.questionID - 1];
-        if (question == undefined) {
+        if (question === undefined) {
             res.status(404).json({
                 status: 404,
                 error: 'Question does not exist',

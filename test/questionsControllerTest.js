@@ -1,11 +1,11 @@
-const chai = require('chai');
+import chai from 'chai';
+import chaiHTTP from 'chai-http';
+import faker from 'faker';
+import server from '../server';
+import questions from '../app/dataStore/questionsTable';
+const { expect } = chai;
+const { should } = chai;
 
-const expect = chai.expect;
-const should = chai.should();
-const chaiHTTP = require('chai-http');
-const faker = require('faker');
-const server = require('./../server');
-const questions = require('./../app/dataStore/questionsTable');
 
 chai.use(chaiHTTP);
 

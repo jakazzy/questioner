@@ -1,6 +1,6 @@
-const faker = require('faker');
+import faker from 'faker';
 
-const tags = [{
+export default [{
     id: 1,
     name: faker.lorem.word(),
 }, {

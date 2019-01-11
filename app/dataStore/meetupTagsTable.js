@@ -1,6 +1,6 @@
-const faker = require('faker');
+import faker from 'faker';
 
-module.exports = [{
+export default [{
     id: 1,
     meetup_Id: 1,
     tag_id: 1,

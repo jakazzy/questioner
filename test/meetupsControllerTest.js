@@ -1,12 +1,12 @@
 // imports
-const chai = require('chai');
+import chai from 'chai';
+import chaiHTTP from 'chai-http';
+import faker from 'faker';
+import server from '../server';
+import meetups from '../app/dataStore/meetupsTable';
 
 const should = chai.should();
-const expect = chai.expect;
-const chaiHTTP = require('chai-http');
-const faker = require('faker');
-const server = require('./../server');
-const meetups = require('./../app/dataStore/meetupsTable');
+const { expect } = chai;
 
 
 chai.use(chaiHTTP);

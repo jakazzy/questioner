@@ -1,21 +1,20 @@
-// imports
-const express = require('express');
-const bodyParser = require('body-parser');
-const v1 = require('./app/routers/v1');
+import express from 'express';
+import bodyParser from 'body-parser';
+import v1 from './app/routers/v1';
 
 // Doumentation for the routes
 const allRoutes = {
-    meetups_url: 'http://api/v1/meetups',
-    create_meetups_url: 'http://api/v1/meetups',
-    upcoming_meetups_url: 'http://api/v1/meetups/upcoming',
-    meetup_url: 'http://api/v1/meetup/{meetupID}',
-    meetup_rsvps: 'http://api/v1/meetups/{meetupID}/rsvps',
-    create_meetup_rsvp: 'http://api/v1/meetups/{meetupID}/rsvps',
-    questions_url: 'http://api/v1/questions',
-    question_url: 'http://api/v1/questions/{questionID}',
-    create_question_url: 'http://api/v1/questions',
-    upvote_url: 'http://api/v1/questions/{questionID}/upvote',
-    downvote_url: 'http://api/v1/questions/{questionID}/downvote',
+    meetups_url: 'https://myquest.herokuapp.com/api/v1/meetups',
+    create_meetups_url: 'https://myquest.herokuapp.com/api/v1/meetups',
+    upcoming_meetups_url: 'https://myquest.herokuapp.com/api/v1/meetups/upcoming',
+    meetup_url: 'https://myquest.herokuapp.com/api/v1/meetup/{meetupID}',
+    meetup_rsvps: 'https://myquest.herokuapp.com/api/v1/meetups/{meetupID}/rsvps',
+    create_meetup_rsvp: 'https://myquest.herokuapp.com/api/v1/meetups/{meetupID}/rsvps',
+    questions_url: 'https://myquest.herokuapp.com/api/v1/questions',
+    question_url: 'https://myquest.herokuapp.com/api/v1/questions/{questionID}',
+    create_question_url: 'https://myquest.herokuapp.com/api/v1/questions',
+    upvote_url: 'https://myquest.herokuapp.com/api/v1/questions/{questionID}/upvote',
+    downvote_url: 'https://myquest.herokuapp.com/api/v1/questions/{questionID}/downvote',
 };
 
 
@@ -37,6 +36,7 @@ app.use(bodyParser.json());
 app.use('/api/v1', v1(express));
 
 // server starts
+
 if (!module.parent) {
     app.listen(port, () => {
         console.log('Api Server running at port 8080');
@@ -44,4 +44,4 @@ if (!module.parent) {
 }
 
 // export for test (chai-http)
-module.exports = app;
+export default app;

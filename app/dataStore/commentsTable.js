@@ -1,6 +1,6 @@
-const faker = require('faker');
+import faker from 'faker';
 
-const comments = [{
+export default [{
     id: 1,
     body: faker.lorem.sentences(),
     user_id: 1,

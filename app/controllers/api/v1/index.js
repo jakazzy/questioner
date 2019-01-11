@@ -1,8 +1,9 @@
-const questionsController = require('./questionsController');
-const usersController = require('./usersController');
-const meetupsController = require('./meetupsController');
+import questionsController from './questionsController';
+import usersController from './usersController';
+import meetupsController from './meetupsController';
 
-module.exports = {
+
+export default {
     questionsController,
     usersController,
     meetupsController,
